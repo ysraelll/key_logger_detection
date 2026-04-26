@@ -1,5 +1,4 @@
 import yara
-import os
 from ..core.logger import logger
 
 class YaraScanner:

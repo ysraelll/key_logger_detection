@@ -1,6 +1,6 @@
 import hashlib
 import os
-from typing import List, Optional
+from typing import Tuple, Optional
 from ..core.logger import logger
 
 class HashEngine:

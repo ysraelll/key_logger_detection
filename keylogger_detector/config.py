@@ -1,5 +1,4 @@
 import yaml
-import os
 from .core.logger import logger
 
 CONFIG_FILE = "config.yaml"
