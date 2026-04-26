@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "keylogger-detector"
+version = "0.1.0"
+description = "A professional tool to detect potential keylogger indicators on Windows and Linux."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "psutil>=5.9.4",
+]
+
+[project.scripts]
+keylogger-detect = "keylogger_detector.cli:main"

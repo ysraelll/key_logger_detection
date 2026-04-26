@@ -1,56 +1,71 @@
 # Cross-Platform Keylogger Detector
 
-A Python-based tool to detect potential keylogger indicators on Windows and Linux systems.
+A professional Python-based tool to detect potential keylogger indicators on Windows and Linux systems using a multi-layered detection engine.
 
-## Features
-- Process monitoring with `psutil` (PID, executable path, command-line indicator matching)
-- Network port inspection for suspicious listener/connection ports
-- Filesystem scanning for suspicious filenames with scan limits
-- Risk score and severity classification (`low` / `medium` / `high`)
-- Report generation in text or JSON format
+## 🚀 Features
+- **Multi-Layered Detection**:
+    - **Heuristic Matching**: Flags known suspicious process names and ports.
+    - **Behavioral Analysis**: Detects raw input device access on Linux and key-hooking API strings on Windows.
+    - **YARA Integration**: Uses industry-standard YARA rules for deep binary pattern matching.
+    - **Hash Database**: High-performance SHA-256 matching against millions of known malware signatures.
+- **Professional Engineering**:
+    - Risk score and severity classification (`low` / `medium` / `high`).
+    - Report generation in text or JSON format.
+    - Externalized configuration via `config.yaml`.
+    - High-performance signature lookup using Python sets.
 
-## Installation
+## 🛠️ Installation
 ```bash
 git clone https://github.com/ysraelll/key_logger_detection.git
 cd key_logger_detection
-python -m pip install -r requirements.txt
+pip install .
 ```
 
-## Usage
+## 💻 Usage
 
-### Standard scan (text report)
+### 🐧 Linux
+Run with `sudo` to ensure full visibility into system processes and `/dev/input` devices.
 ```bash
-sudo python keylogger_detector.py
+sudo keylogger-detect
 ```
 
-### JSON report output
+### 🪟 Windows
+Open your terminal (PowerShell or CMD) as **Administrator** and run:
 ```bash
-sudo python keylogger_detector.py --format json
+keylogger-detect
 ```
 
-### Custom paths and scan limits
+### ⚙️ Advanced Options
+**JSON report output:**
 ```bash
-sudo python keylogger_detector.py --paths /tmp /var/tmp --max-files 2000
+sudo keylogger-detect --format json
 ```
 
-### Non-admin test run (reduced visibility)
+**Custom paths and scan limits:**
 ```bash
-python keylogger_detector.py --skip-admin-check
+sudo keylogger-detect --paths /tmp /var/tmp --max-files 2000
 ```
 
-## Output
+**Non-admin test run (reduced visibility):**
+```bash
+keylogger-detect --skip-admin-check
+```
+
+## 📊 Output
 The tool prints a console summary and writes a report file:
 - `scan_report_<timestamp>.txt`
 - `scan_report_<timestamp>.json`
 
 Reports include:
-- host/platform information
-- suspicious processes
-- suspicious ports
-- suspicious files
-- risk score and severity
+- Host/platform information
+- Suspicious processes (with the matched indicator: Heuristic, Behavioral, YARA, or Hash)
+- Suspicious network ports
+- Suspicious files
+- Overall risk score and severity
 
-## Notes
-- The scanner uses heuristics and indicator matching and may produce false positives.
-- Administrator/root permissions improve visibility into process and network data.
-- Add or tune indicators in `keylogger_detector.py` for your environment.
+## ⚙️ Configuration
+You can tune the detection indicators without touching the code by modifying `config.yaml`. You can also update the `signatures.txt` file with the latest SHA-256 hashes from threat intelligence sources like **MalwareBazaar**.
+
+## ⚠️ Notes
+- The scanner uses heuristics and behavioral analysis; it may produce false positives.
+- Administrator/root permissions are strongly recommended for accurate results.

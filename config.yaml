@@ -1,0 +1,37 @@
+# Keylogger Detector Configuration
+
+# Suspicious process names to flag
+known_processes:
+  linux:
+    - logkeys
+    - keylogger
+    - lkl
+    - uberkey
+  windows:
+    - keylogger.exe
+    - hooker.exe
+    - rat.exe
+    - ahk.exe
+
+# Common malware listener ports
+known_ports:
+  - 1337
+  - 31337
+  - 6667
+  - 12345
+
+# Default scan paths for suspicious files
+common_paths:
+  linux:
+    - /usr/bin/
+    - /var/log/
+    - /tmp/
+  windows:
+    - C:\Windows\Temp\
+    - AppData\Local\Temp\
+
+# Keywords to look for in filenames
+file_keywords:
+  - keylog
+  - logger
+  - hook
